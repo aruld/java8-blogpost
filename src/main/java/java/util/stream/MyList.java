@@ -12,9 +12,13 @@ import static java.util.stream.Collectors.toList;
 
 /**
  *
- * Custom array list implementation that integrates with the Streaming API.
+ * Custom array list implementation that integrates with the Streaming API extensions.
+ *
+ * Note: This implementation resides in this package in order to access {@link ReferencePipeline}.
  *
  * @see java.util.stream.Stream
+ *
+ * @author Arul Dhesiaseelan (aruld@acm.org)
  */
 public class MyList<E> extends ArrayList<E> {
 
