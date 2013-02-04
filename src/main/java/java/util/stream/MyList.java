@@ -10,6 +10,12 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+/**
+ *
+ * Custom array list implementation that integrates with the Streaming API.
+ *
+ * @see java.util.stream.Stream
+ */
 public class MyList<E> extends ArrayList<E> {
 
   public MyList(int initialCapacity) {
@@ -34,17 +40,12 @@ public class MyList<E> extends ArrayList<E> {
    */
   public static void main(String[] args) {
     List<String> google = Arrays.asList("android", "Android", "galaxy", "Galaxy", "nexus", "Nexus");
-
     List<String> apple = Arrays.asList("ios", "iOS", "iphone", "iPhone", "ipad", "iPad");
-
     List<Tweet> tweets = TweetReader.fromTweetSet(TweetReader.allTweets);
-
-    List<Tweet> googleTweets3 = tweets.stream().filter(tweet -> (new MyList<>(google).stream().exists(tweet.text::contains))).collect(toList());
-
-    List<Tweet> appleTweets3 = tweets.stream().filter(tweet -> (new MyList<>(apple).stream().exists(tweet.text::contains))).collect(toList());
-    System.out.println(googleTweets3.size());
-    System.out.println(appleTweets3.size());
-
+    List<Tweet> googleTweets = tweets.stream().filter(tweet -> (new MyList<>(google).stream().exists(tweet.text::contains))).collect(toList());
+    List<Tweet> appleTweets = tweets.stream().filter(tweet -> (new MyList<>(apple).stream().exists(tweet.text::contains))).collect(toList());
+    System.out.println(googleTweets.size());
+    System.out.println(appleTweets.size());
   }
 
 }

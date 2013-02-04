@@ -12,6 +12,7 @@ public class MyReferencePipeline<T, U> extends ReferencePipeline<T, U> implement
 
   @Override
   public boolean exists(Predicate<? super U> predicate) {
+    // Reuse existing anyMatch implementation
     return pipeline(MatchOp.match(predicate, MatchOp.MatchKind.ANY));
   }
 }
