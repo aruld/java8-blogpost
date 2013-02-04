@@ -8,7 +8,6 @@
     <artifactId>java8-blogpost</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
@@ -24,30 +23,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.13</version>
-                <configuration>
-                    <includes>
-                        <include>com.aruld.oneliners.ItemTest.java</include>
-                    </includes>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.4.3</version>
-            </plugin>
         </plugins>
-
-        <resources>
-            <resource>
-                <directory>src/main/test/resources</directory>
-                <includes>
-                    <include>data.txt</include>
-                </includes>
-            </resource>
-        </resources>
     </build>
 </project>
