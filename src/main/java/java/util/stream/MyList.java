@@ -1,7 +1,7 @@
 package java.util.stream;
 
-import com.aruld.blogpost.Tweet;
-import com.aruld.blogpost.TweetReader;
+import com.github.aruld.blogpost.Tweet;
+import com.github.aruld.blogpost.TweetReader;
 
 import java.util.ArrayList;
 import java.util.Arrays;

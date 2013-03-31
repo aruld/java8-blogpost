@@ -1,4 +1,4 @@
-package com.aruld.blogpost;
+package com.github.aruld.blogpost;
 
 public class Tweet implements Comparable<Tweet> {
   final public String user;

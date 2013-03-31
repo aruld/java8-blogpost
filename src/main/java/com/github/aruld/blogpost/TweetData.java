@@ -1,4 +1,4 @@
-package com.aruld.blogpost;
+package com.github.aruld.blogpost;
 
 public interface TweetData {
 
