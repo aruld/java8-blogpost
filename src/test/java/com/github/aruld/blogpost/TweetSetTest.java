@@ -3,6 +3,7 @@ package com.github.aruld.blogpost;
 import org.junit.Test;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
 
 import static java.util.stream.Collectors.toList;
 import static org.junit.Assert.assertEquals;
@@ -46,9 +47,9 @@ public class TweetSetTest {
 //    union3.addAll(appleTweets3b);
 //    System.out.println(union3.size());
 
-    List<Tweet> googleTweets4 = TweetReader.fromTweetSet(TweetReader.allTweets).stream().filter(t -> google.stream().reduce(false, (Boolean b, String keyword) -> b || t.text.contains(keyword), null)).collect(toList());
+    List<Tweet> googleTweets4 = TweetReader.fromTweetSet(TweetReader.allTweets).stream().filter(t -> google.stream().reduce(false, (Boolean b, String keyword) -> b || t.text.contains(keyword), (a, b) -> a || b)).collect(toList());
     assertEquals(38, googleTweets4.size());
-    List<Tweet> appleTweets4 = TweetReader.fromTweetSet(TweetReader.allTweets).stream().filter(t -> apple.stream().reduce(false, (Boolean b, String keyword) -> b || t.text.contains(keyword), null)).collect(toList());
+    List<Tweet> appleTweets4 = TweetReader.fromTweetSet(TweetReader.allTweets).stream().filter(t -> apple.stream().reduce(false, (Boolean b, String keyword) -> b || t.text.contains(keyword), (a, b) -> a || b)).collect(toList());
     assertEquals(150, appleTweets4.size());
     Set<Tweet> union2 = new HashSet<>(googleTweets4);
     union2.addAll(appleTweets4);

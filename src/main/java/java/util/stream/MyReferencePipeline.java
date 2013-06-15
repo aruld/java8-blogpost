@@ -15,13 +15,45 @@ import java.util.function.Supplier;
  */
 public class MyReferencePipeline<T, U> extends ReferencePipeline<T, U> implements MyStream<U> {
 
-  public <S> MyReferencePipeline(Supplier<? extends Spliterator<S>> supplier, int sourceFlags) {
-    super((Supplier) supplier, sourceFlags);
+  /**
+   * Constructor for the source stage of a Stream.
+   *
+   * @param source {@code Supplier<Spliterator>} describing the stream
+   *               source
+   * @param sourceFlags the source flags for the stream source, described
+   *                    in {@link StreamOpFlag}
+   */
+  public MyReferencePipeline(Supplier<? extends Spliterator<?>> source,
+       int sourceFlags, boolean parallel) {
+    super(source, sourceFlags, parallel);
   }
+
+  /**
+   * Constructor for the source stage of a Stream.
+   *
+   * @param source {@code Spliterator} describing the stream source
+   * @param sourceFlags the source flags for the stream source, described
+   *                    in {@link StreamOpFlag}
+   */
+  public MyReferencePipeline(Spliterator<?> source,
+       int sourceFlags, boolean parallel) {
+    super(source, sourceFlags, parallel);
+  }
+
+  @Override
+  final boolean opIsStateful() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  final Sink<T> opWrapSink(int flags, Sink<U> sink) {
+    throw new UnsupportedOperationException();
+  }
+
 
   @Override
   public boolean exists(Predicate<? super U> predicate) {
     // Reuse existing anyMatch implementation
-    return pipeline(MatchOps.makeRef(predicate, MatchOps.MatchKind.ANY));
+    return evaluate(MatchOps.makeRef(predicate, MatchOps.MatchKind.ANY));
   }
 }

@@ -45,8 +45,8 @@ public class TweetReader {
     System.out.println(allTweets.size());
   }
 
-  static TweetSet toTweetSet(List<Tweet> l) {
-    return l.stream().reduce(new Empty(), (TweetSet tweetSet, Tweet tweet) -> tweetSet.incl(tweet), null);
+  static TweetSet toTweetSet(List<Tweet> list) {
+    return list.stream().reduce(new Empty(), (TweetSet tweetSet, Tweet tweet) -> tweetSet.incl(tweet), (tweetSet, tweetSet2) -> tweetSet.union(tweetSet2));
   }
 
   public static List<Tweet> fromTweetSet(TweetSet ts) {

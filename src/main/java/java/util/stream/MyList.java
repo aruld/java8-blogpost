@@ -36,7 +36,12 @@ public class MyList<E> extends ArrayList<E> {
 
   @Override
   public MyStream<E> stream() {
-    return new MyReferencePipeline<>(() -> Arrays.spliterator((E[]) this.toArray(), 0, this.size()), StreamOpFlag.IS_SIZED | StreamOpFlag.IS_ORDERED);
+    return new MyReferencePipeline<>(Arrays.spliterator((E[]) this.toArray(), 0, this.size()), StreamOpFlag.IS_SIZED | StreamOpFlag.IS_ORDERED, false);
+  }
+
+  @Override
+  public Stream<E> parallelStream() {
+    return new MyReferencePipeline<>(Arrays.spliterator((E[]) this.toArray(), 0, this.size()), StreamOpFlag.IS_SIZED | StreamOpFlag.IS_ORDERED, true);
   }
 
   /**
